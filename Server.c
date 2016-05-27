@@ -12,7 +12,7 @@ int main( int argc, char *argv[] )
 	char command[256];
 	struct sockaddr_in server_addr, client_addr;
 	
-	printf("Listening on port number 8881\n");
+	printf("Listening on port number 8889\n");
 
 	//Create the server socket
 	serverSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -21,7 +21,7 @@ int main( int argc, char *argv[] )
 	bzero((char *) &server_addr, sizeof(server_addr));
 
 	//Set the port number
-	portNum = 8881;
+	portNum = 8889;
 
 	//Declare the socket protocols and port num
 	server_addr.sin_family = AF_INET;
@@ -48,52 +48,12 @@ int main( int argc, char *argv[] )
 	bzero(command, 256);
 
 	//Read the data being sent from the client and store it in the command variable
-	read(client, command, 255);
 
-	while(command)
+	for(;;)
 	{
-
-		accept(serverSocket, (struct sockaddr *)&client_addr, &size);
 		read(client, command, 255);
-
-		if (*command != '5' && *command != '6')
-		{
-			printf("%s\n",command);
-			close(client);
-		}
-
-	 	if (*command == '5')
-		{
-			printf("Disconnected\n");
-			close(client);
-
-			for(;;)
-				{
-					accept(serverSocket, (struct sockaddr *)&client_addr, &size);
-					read(client, command, 255);
-					
-
-					if(*command =='6')
-					{
-						close(client); 
-						break;
-					}
-
-					close(client);
-				}
-		}
-	
-		if (*command == '6')
-		{
-			printf("Reconnecting. Please Wait\n");
-			sleep(2);
-			printf("You are now connected\n");
-			close(client);
-		}
-
+		printf("%s\n",command);
+		fflush(stdout);
 	}
-	
-	close(client);
-
-		return 0;
+	return 0;
 }
