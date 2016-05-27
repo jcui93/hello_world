@@ -12,7 +12,7 @@ int main( int argc, char *argv[] )
 	char command[256];
 	struct sockaddr_in server_addr, client_addr;
 	
-	printf("Listening on port number 444\n");
+	printf("Listening on port number 8881\n");
 
 	//Create the server socket
 	serverSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -21,7 +21,7 @@ int main( int argc, char *argv[] )
 	bzero((char *) &server_addr, sizeof(server_addr));
 
 	//Set the port number
-	portNum = 4444;
+	portNum = 8881;
 
 	//Declare the socket protocols and port num
 	server_addr.sin_family = AF_INET;
