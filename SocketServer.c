@@ -51,7 +51,6 @@ int main(int argc , char *argv[])
         return 1;
     }
     puts("Connection accepted");
-     
     //Receive a message from client
     while( (read_size = recv(client_sock , client_message , 2000 , 0)) > 0 )
     {
@@ -69,6 +68,5 @@ int main(int argc , char *argv[])
     {
         perror("recv failed");
     }
-     
     return 0;
 }
