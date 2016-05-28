@@ -52,11 +52,14 @@ int main(int argc , char *argv[])
     }
     puts("Connection accepted");
     //Receive a message from client
-    while( (read_size = recv(client_sock , client_message , 2000 , 0)) > 0 )
+    while( 1 )
     {
         //Send the message back to client
-        write(client_sock , client_message , strlen(client_message));
-	printf("%s\n", client_message);
+	char cmd_msg[20];
+	scanf("%s\n",cmd_msg);
+	printf("%s\n", cmd_msg);
+	fflush(stdout);
+        write(client_sock , cmd_msg, strlen(cmd_msg));
     }
      
     if(read_size == 0)
